@@ -1,0 +1,72 @@
+.overlay {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0,0,0,0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+.modal {
+
+  width: 90%;
+  max-width: 400px;
+
+  padding: 30px;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  color: white;
+
+  position: relative;
+
+  animation: aparecer 0.2s ease;
+}
+
+.modal img {
+  width: 180px;
+}
+
+.close {
+
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  border: none;
+
+  width: 35px;
+  height: 35px;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  font-weight: bold;
+}
+
+@keyframes aparecer {
+
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+}
