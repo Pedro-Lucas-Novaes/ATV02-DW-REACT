@@ -1,0 +1,44 @@
+.darkButton {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  transition: 0.2s;
+}
+
+.darkButton:hover {
+  transform: scale(1.05);
+}
+
+.shinyButton {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  background: linear-gradient(135deg, #ffd54f, #ffeb3b);
+  color: #333;
+  transition: 0.2s;
+}
+
+.shinyButton:hover {
+  transform: translateY(-2px);
+}
+
+.glowButton {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  background: linear-gradient(135deg, #fff8dc, #ffd700);
+  color: #333;
+  transition: 0.2s;
+}
+
+.glowButton:hover {
+  transform: translateY(-2px);
+}

@@ -35,3 +35,33 @@
   margin-top: 10px;
   text-transform: capitalize;
 }
+
+.shiny {
+
+  box-shadow:
+    0 0 20px gold;
+
+  animation:
+    shinyGlow 2s infinite;
+}
+
+@keyframes shinyGlow {
+
+  0% {
+
+    box-shadow:
+      0 0 10px gold;
+  }
+
+  50% {
+
+    box-shadow:
+      0 0 25px gold;
+  }
+
+  100% {
+
+    box-shadow:
+      0 0 10px gold;
+  }
+}

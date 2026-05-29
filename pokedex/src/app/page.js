@@ -8,6 +8,7 @@ import Loading from "../components/Loading/Loading";
 import PokemonModal from "../components/PokemonModal/PokemonModal";
 import pokemonTypes from "../utils/pokemonTypes";
 import pokemonGenerations from "../utils/pokemonGenerations";
+import BackgroundMusic from "../components/BackgroundMusic/BackgroundMusic";
 
 export default function Home() {
   // STATES
@@ -17,7 +18,9 @@ export default function Home() {
   const [pokemonSelecionado, setPokemonSelecionado] = useState(null);
   const [tipoSelecionado, setTipoSelecionado] = useState("");
   const [darkMode, setDarkMode] = useState(false);
-  const [geracaoSelecionada, setGeracaoSelecionada] = useState("Kanto");
+  const [geracaoSelecionada, setGeracaoSelecionada] = useState("kanto");
+  const [shinyMode, setShinyMode] = useState(false);
+  const [shinyGlow, setShinyGlow] = useState(true);
 
   // USE EFFECTS
   useEffect(() => {
@@ -25,8 +28,9 @@ export default function Home() {
       setLoading(true);
 
       const geracaoAtual =
-        pokemonGenerations.find((gen) => gen.nome === geracaoSelecionada) ||
-        pokemonGenerations[0];
+        pokemonGenerations.find(
+          (gen) => gen.nome.toLocaleLowerCase() === geracaoSelecionada,
+        ) || pokemonGenerations[0];
 
       const totalPokemons = geracaoAtual.fim - geracaoAtual.inicio + 1;
 
@@ -84,6 +88,8 @@ export default function Home() {
   // RETURN
   return (
     <>
+      <BackgroundMusic />
+
       <Header
         pesquisa={pesquisa}
         setPesquisa={setPesquisa}
@@ -95,16 +101,24 @@ export default function Home() {
         geracoes={pokemonGenerations}
         geracaoSelecionada={geracaoSelecionada}
         setGeracaoSelecionada={setGeracaoSelecionada}
+        shinyMode={shinyMode}
+        setShinyMode={setShinyMode}
+        shinyGlow={shinyGlow}
+        setShinyGlow={setShinyGlow}
       />
 
       <PokemonList
         pokemons={pokemonsFiltrados}
         setPokemonSelecionado={setPokemonSelecionado}
+        shinyMode={shinyMode}
+        shinyGlow={shinyGlow}
       />
 
       <PokemonModal
         pokemon={pokemonSelecionado}
         fecharModal={() => setPokemonSelecionado(null)}
+        shinyMode={shinyMode}
+        shinyGlow={shinyGlow}
       />
     </>
   );

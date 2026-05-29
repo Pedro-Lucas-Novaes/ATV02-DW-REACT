@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: center;
 
-  z-index: 999;
+  z-index: 2000;
 }
 
 .modal {
@@ -69,4 +69,39 @@
     opacity: 1;
   }
 
+}
+
+.shinyModal {
+
+  box-shadow:
+    0 0 30px gold;
+
+  border:
+    3px solid gold;
+
+  animation:
+    shinyModalGlow 2s infinite;
+}
+
+
+
+@keyframes shinyModalGlow {
+
+  0% {
+
+    box-shadow:
+      0 0 15px gold;
+  }
+
+  50% {
+
+    box-shadow:
+      0 0 35px gold;
+  }
+
+  100% {
+
+    box-shadow:
+      0 0 15px gold;
+  }
 }

@@ -24,7 +24,8 @@ const pokemonTypeIcons = {
 
   bug: "🐛",
 
-  normal: "⚪"
+  normal: "⚪",
+  dark: "🌑"
 
 }
 

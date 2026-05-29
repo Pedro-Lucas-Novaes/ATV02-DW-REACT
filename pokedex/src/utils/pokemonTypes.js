@@ -14,7 +14,8 @@ const pokemonTypes = [
   "rock",
   "ghost",
   "ice",
-  "dragon"
+  "dragon",
+  "dark"
 ]
 
 export default pokemonTypes

@@ -1,6 +1,8 @@
 import styles from "./Header.module.css";
 import pokemonTypeIcons from "../../utils/pokemonTypeIcons";
 import generationIcons from "../../utils/generationIcons";
+import { useState } from "react";
+import SettingsButtons from "../SettingsButtons/SettingsButtons";
 
 export default function Header({
   pesquisa,
@@ -16,18 +18,75 @@ export default function Header({
   geracoes,
   geracaoSelecionada,
   setGeracaoSelecionada,
+
+  shinyMode,
+  setShinyMode,
+
+  shinyGlow,
+  setShinyGlow,
 }) {
+  const [menuAberto, setMenuAberto] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  const toggleSettings = () => {
+    setSettingsOpen((prev) => !prev);
+    setMenuAberto(false);
+  };
+
+  const toggleMenu = () => {
+    setMenuAberto((prev) => !prev);
+    setSettingsOpen(false);
+  };
+
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>Pokédex</h1>
 
-      <button
-        onClick={() => setDarkMode(!darkMode)}
-        className={styles.darkButton}
-      >
-        {darkMode ? "☀️ Light" : "🌙 Dark"}
+      {/* ⚙️ Settings */}
+      <button className={styles.settingsButton} onClick={toggleSettings}>
+        ⚙️
       </button>
 
+      <div
+        className={
+          settingsOpen
+            ? `${styles.settingsPanel} ${styles.settingsOpen}`
+            : styles.settingsPanel
+        }
+      >
+        <SettingsButtons
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          shinyMode={shinyMode}
+          setShinyMode={setShinyMode}
+          shinyGlow={shinyGlow}
+          setShinyGlow={setShinyGlow}
+        />
+      </div>
+
+      {/* ☰ Mobile */}
+      <button className={styles.menuButton} onClick={toggleMenu}>
+        ☰
+      </button>
+
+      <div
+        className={
+          menuAberto
+            ? `${styles.mobileMenu} ${styles.mobileOpen}`
+            : styles.mobileMenu
+        }
+      >
+        <SettingsButtons
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          shinyMode={shinyMode}
+          setShinyMode={setShinyMode}
+          shinyGlow={shinyGlow}
+          setShinyGlow={setShinyGlow}
+        />
+      </div>
+
+      {/* 🔎 Search */}
       <input
         type="text"
         placeholder="Buscar Pokémon..."
@@ -36,6 +95,7 @@ export default function Header({
         className={styles.input}
       />
 
+      {/* 🎛️ Filters */}
       <div className={styles.filtersContainer}>
         <div className={styles.selectWrapper}>
           <select
@@ -71,18 +131,22 @@ export default function Header({
               🌎 Região
             </option>
 
-            <option value="todas">{generationIcons["Todas"]} Todas</option>
+            <option value="todas">
+              {generationIcons["Todas"]} Todas
+            </option>
 
             {geracoes
-
-              .filter((geracao) => geracao.nome !== "Todas")
-
+              .filter((g) => g.nome !== "Todas")
               .map((geracao) => (
-                <option key={geracao.nome} value={geracao.nome.toLowerCase()}>
+                <option
+                  key={geracao.nome}
+                  value={geracao.nome.toLowerCase()}
+                >
                   {generationIcons[geracao.nome]} {geracao.nome}
                 </option>
               ))}
           </select>
+
           <span className={styles.arrow}>▼</span>
         </div>
       </div>
